@@ -12,7 +12,7 @@ export default function PaGination({ page, total }) {
     </Link>
    )}
 
-   {page > lastPage && (
+   {page < lastPage && (
     <Link href={`/events?page=${page + 1}`}>
      <a className='btn-secondary'>Next</a>
     </Link>
