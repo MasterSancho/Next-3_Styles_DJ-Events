@@ -25,7 +25,7 @@ export default async (req, res) => {
    res.status(403).json({ message: 'User forbidden' });
   }
  } else {
-  res.setHeader('Allow', [GET]);
+  res.setHeader('Allow', ['GET']);
   res.status(405).json({ message: `Method ${req.method} not allowed` });
  }
 };

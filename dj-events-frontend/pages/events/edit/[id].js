@@ -2,7 +2,7 @@ import moment from 'moment';
 import { FaImage } from 'react-icons/fa';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { parseCookie } from '@/helpers/index';
+import { parseCookies } from '@/helpers/index';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
@@ -23,11 +23,9 @@ export default function EditEventPage({ evt, token }) {
   time: evt.time,
   description: evt.description,
  });
-
  const [imagePreview, setImagePreview] = useState(
   evt.image ? evt.image.formats.thumbnail.url : null
  );
-
  const [showModal, setShowModal] = useState(false);
 
  const router = useRouter();
@@ -81,13 +79,11 @@ export default function EditEventPage({ evt, token }) {
   <Layout title='Add New Event'>
    <Link href='/events'>Go Back</Link>
    <h1>Edit Event</h1>
-
    <ToastContainer />
-
    <form onSubmit={handleSubmit} className={styles.form}>
     <div className={styles.grid}>
      <div>
-      <label htmlFor='name'>Event name</label>
+      <label htmlFor='name'>Event Name</label>
       <input
        type='text'
        id='name'
@@ -96,7 +92,6 @@ export default function EditEventPage({ evt, token }) {
        onChange={handleInputChange}
       />
      </div>
-
      <div>
       <label htmlFor='performers'>Performers</label>
       <input
@@ -107,18 +102,16 @@ export default function EditEventPage({ evt, token }) {
        onChange={handleInputChange}
       />
      </div>
-
      <div>
       <label htmlFor='venue'>Venue</label>
       <input
        type='text'
        name='venue'
-       id='vanue'
+       id='venue'
        value={values.venue}
        onChange={handleInputChange}
       />
      </div>
-
      <div>
       <label htmlFor='address'>Address</label>
       <input
@@ -129,7 +122,6 @@ export default function EditEventPage({ evt, token }) {
        onChange={handleInputChange}
       />
      </div>
-
      <div>
       <label htmlFor='date'>Date</label>
       <input
@@ -140,7 +132,6 @@ export default function EditEventPage({ evt, token }) {
        onChange={handleInputChange}
       />
      </div>
-
      <div>
       <label htmlFor='time'>Time</label>
       <input
@@ -191,7 +182,7 @@ export default function EditEventPage({ evt, token }) {
 }
 
 export async function getServerSideProps({ params: { id }, req }) {
- const { token } = parseCookie(req);
+ const { token } = parseCookies(req);
 
  const res = await fetch(`${API_URL}/events/${id}`);
  const evt = await res.json();

@@ -1,11 +1,11 @@
-import { parseCookie } from '@/helpers/index';
+import { parseCookies } from '@/helpers/index';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import Layout from '@/components/Layout';
-import { API_URL } from 'config';
+import { API_URL } from '@/config/index';
 import styles from '@/styles/Form.module.css';
 
 export default function AddEventPage({ token }) {
@@ -63,13 +63,11 @@ export default function AddEventPage({ token }) {
   <Layout title='Add New Event'>
    <Link href='/events'>Go Back</Link>
    <h1>Add Event</h1>
-
    <ToastContainer />
-
    <form onSubmit={handleSubmit} className={styles.form}>
     <div className={styles.grid}>
      <div>
-      <label htmlFor='name'>Event name</label>
+      <label htmlFor='name'>Event Name</label>
       <input
        type='text'
        id='name'
@@ -78,7 +76,6 @@ export default function AddEventPage({ token }) {
        onChange={handleInputChange}
       />
      </div>
-
      <div>
       <label htmlFor='performers'>Performers</label>
       <input
@@ -89,18 +86,16 @@ export default function AddEventPage({ token }) {
        onChange={handleInputChange}
       />
      </div>
-
      <div>
       <label htmlFor='venue'>Venue</label>
       <input
        type='text'
        name='venue'
-       id='vanue'
+       id='venue'
        value={values.venue}
        onChange={handleInputChange}
       />
      </div>
-
      <div>
       <label htmlFor='address'>Address</label>
       <input
@@ -111,7 +106,6 @@ export default function AddEventPage({ token }) {
        onChange={handleInputChange}
       />
      </div>
-
      <div>
       <label htmlFor='date'>Date</label>
       <input
@@ -122,7 +116,6 @@ export default function AddEventPage({ token }) {
        onChange={handleInputChange}
       />
      </div>
-
      <div>
       <label htmlFor='time'>Time</label>
       <input
@@ -152,7 +145,7 @@ export default function AddEventPage({ token }) {
 }
 
 export async function getServerSideProps({ req }) {
- const { token } = parseCookie(req);
+ const { token } = parseCookies(req);
 
  return {
   props: {

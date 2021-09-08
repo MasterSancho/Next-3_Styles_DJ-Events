@@ -1,8 +1,8 @@
-import { parseCookie } from '@/helpers/index';
+import { parseCookies } from '@/helpers/index';
 import { useRouter } from 'next/router';
 import Layout from '@/components/Layout';
 import DashboardEvent from '@/components/DashboardEvent';
-import { API_URL } from 'config';
+import { API_URL } from '@/config/index';
 import styles from '@/styles/Dashboard.module.css';
 
 export default function DashboardPage({ events, token }) {
@@ -22,7 +22,7 @@ export default function DashboardPage({ events, token }) {
    if (!res.ok) {
     toast.error(data.message);
    } else {
-    router.reload('/events');
+    router.reload();
    }
   }
  };
@@ -42,7 +42,7 @@ export default function DashboardPage({ events, token }) {
 }
 
 export async function getServerSideProps({ req }) {
- const { token } = parseCookie(req);
+ const { token } = parseCookies(req);
 
  const res = await fetch(`${API_URL}/events/me`, {
   method: 'GET',

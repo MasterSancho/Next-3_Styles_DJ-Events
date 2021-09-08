@@ -21,14 +21,12 @@ export default function LoginPage() {
  };
 
  return (
-  <Layout title='User login'>
+  <Layout title='User Login'>
    <div className={styles.auth}>
     <h1>
      <FaUser /> Log In
     </h1>
-
     <ToastContainer />
-
     <form onSubmit={handleSubmit}>
      <div>
       <label htmlFor='email'>Email Address</label>
@@ -39,7 +37,6 @@ export default function LoginPage() {
        onChange={(e) => setEmail(e.target.value)}
       />
      </div>
-
      <div>
       <label htmlFor='password'>Password</label>
       <input

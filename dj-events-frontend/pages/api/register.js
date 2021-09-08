@@ -1,11 +1,11 @@
 import cookie from 'cookie';
-import { API_URL } from 'config';
+import { API_URL } from '@/config/index';
 
 export default async (req, res) => {
  if (req.method === 'POST') {
   const { username, email, password } = req.body;
 
-  const starapiRes = await fetch(`${API_URL}/auth/local/register`, {
+  const strapiRes = await fetch(`${API_URL}/auth/local/register`, {
    method: 'POST',
    headers: {
     'Content-Type': 'application/json',
@@ -17,10 +17,10 @@ export default async (req, res) => {
    }),
   });
 
-  const data = await starapiRes.json();
+  const data = await strapiRes.json();
 
-  if (starapiRes.ok) {
-   // Set cookie
+  if (strapiRes.ok) {
+   // Set Cookie
    res.setHeader(
     'Set-Cookie',
     cookie.serialize('token', data.jwt, {

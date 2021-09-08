@@ -34,9 +34,7 @@ export default function RegisterPage() {
     <h1>
      <FaUser /> Register
     </h1>
-
     <ToastContainer />
-
     <form onSubmit={handleSubmit}>
      <div>
       <label htmlFor='username'>Username</label>
@@ -47,7 +45,6 @@ export default function RegisterPage() {
        onChange={(e) => setUsername(e.target.value)}
       />
      </div>
-
      <div>
       <label htmlFor='email'>Email Address</label>
       <input
@@ -57,7 +54,6 @@ export default function RegisterPage() {
        onChange={(e) => setEmail(e.target.value)}
       />
      </div>
-
      <div>
       <label htmlFor='password'>Password</label>
       <input
@@ -67,7 +63,6 @@ export default function RegisterPage() {
        onChange={(e) => setPassword(e.target.value)}
       />
      </div>
-
      <div>
       <label htmlFor='passwordConfirm'>Confirm Password</label>
       <input

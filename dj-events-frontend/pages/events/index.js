@@ -1,11 +1,9 @@
 import Layout from '@/components/Layout';
 import EventItem from '@/components/EventItem';
 import Pagination from '@/components/Pagination';
-import { API_URL, PER_PAGE } from 'config';
+import { API_URL, PER_PAGE } from '@/config/index';
 
-export default function HomePage({ events, page, total }) {
- const lastPage = Math.ceil(total / PER_PAGE);
-
+export default function EventsPage({ events, page, total }) {
  return (
   <Layout>
    <h1>Events</h1>
